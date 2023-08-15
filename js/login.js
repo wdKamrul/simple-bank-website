@@ -16,7 +16,6 @@ document.getElementById("btn-submit").addEventListener("click", function () {
   // step-4: verify email and password and check whether valid user or not
   if (email === "kamruldca@gmail.com" && password === "secret") {
     window.location.href = "bank.html";
-  } else {
-    alert("The password is incorrect!! Please provide the correct password.");
+  } else { alert("The password is incorrect!! Please provide the correct password.");
   }
 });
