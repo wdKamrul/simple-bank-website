@@ -18,25 +18,46 @@ document.getElementById("btn-withdraw").addEventListener("click", function () {
   const newWithdrawAmountString = withdrawField.value;
   const newWithdrawAmount = parseFloat(newWithdrawAmountString);
 
+  // step-7:
+  withdrawField.value = "";
+
+  if(isNaN(newWithdrawAmount)){
+    alert('Please provide a valid number');
+    return;
+  }
+
   // step-3:
   const withdrawTotalElement = document.getElementById("withdraw-total");
   const previousWithdrawTotalString = withdrawTotalElement.innerText;
   const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
 
-  // step-4:
-  const currentWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
-  withdrawTotalElement.innerText = currentWithdrawTotal;
+  // // step-4:
+  // const currentWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
+  // withdrawTotalElement.innerText = currentWithdrawTotal;
 
   // step-5:
   const balanceTotalElement = document.getElementById("balance-total");
   const previousBalanceTotalString = balanceTotalElement.innerText;
   const previousBalanceTotal = parseFloat(previousBalanceTotalString);
 
+  // // step-7:
+  // withdrawField.value = "";
+
+  // আমরা চাচ্ছি যদি ব্যালেন্স ১২৪০ থাকে  কিন্তু আমি যদি ১০০০০ টাকা উঠাতে চাই তাহলে
+  if (newWithdrawAmount > previousBalanceTotal) {
+    alert("Insufficient funds in your account.");
+    return;
+  }
+
+  // উপরে ছিলো এই কোড কিন্তু ব্যালেন্সের টাকা যদি উইড্রোর টাকার কম হয় তাহলে  উপরের অ্যালার্ট দেখাবে এটা আর উইথড্রোতে যোগ হবে না ।
+  // step-4:
+  const currentWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
+  withdrawTotalElement.innerText = currentWithdrawTotal;
 
   // step-6:
-  const newBalanceTotal = previousBalanceTotal - newWithdrawAmount
+  const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
   balanceTotalElement.innerText = newBalanceTotal;
 
-  // step-7:
-  withdrawField.value = "";
+  // // step-7:
+  // withdrawField.value = "";
 });
